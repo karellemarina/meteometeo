@@ -54,6 +54,13 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "8bc7430591fcdeaet361d96ab0f37o46";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -62,32 +69,32 @@ function getForecast(city) {
 }
 
 function displayForecast(response) {
-  console.log(response.data);
-
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   let forecastHTML = "";
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `  <div class="weather-forecast">
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `  <div class="weather-forecast">
             <div class="col">
               <div class="forecastdate">
-              ${day}
+              ${formatDay(day.time)}
               </div>
-              <div class="imageforecast">
+              <div>
                <img
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt=""
-                width="36"
-              />
+                src=${day.condition.icon_url} class="imageforecast"/>
                </div>
-              <div class="minmax">
-               <span class="maxtemp">18</span>
-               <span class="mintemp">12</span>
+              <div class="minmax"><strong>
+               <span class="maxtemp">${Math.round(
+                 day.temperature.maximum
+               )}</span></strong>
+               <span class="mintemp">${Math.round(
+                 day.temperature.minimum
+               )}</span>
               </div>
             </div>    
           </div>`;
+    }
   });
 
   let forecastElement = document.querySelector("#forecast");
