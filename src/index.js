@@ -52,7 +52,41 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  let forecastHTML = "";
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `  <div class="weather-forecast">
+            <div class="col">
+              <div class="forecastdate">
+              ${day}
+              </div>
+              <div class="imageforecast">
+               <img
+                src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt=""
+                width="36"
+              />
+               </div>
+              <div class="minmax">
+               <span class="maxtemp">18</span>
+               <span class="mintemp">12</span>
+              </div>
+            </div>    
+          </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Paris");
+
+displayForecast();

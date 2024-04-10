@@ -156,7 +156,18 @@ main {
 }
 
 .weather-forecast {
-  margin-top: 20px;
+  margin-top: 50px;
+  justify-content: space-between;
+  margin: 0 auto;
+  display: flex;
+}
+
+.col {
+  width: auto;
+}
+
+.minmax {
+  display: inline-block;
 }
 
 .forecastdate {
