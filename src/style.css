@@ -155,6 +155,14 @@ main {
   color: pink;
 }
 
+.weather-forecast {
+  margin-top: 20px;
+}
+
+.forecastdate {
+  font-size: 16px;
+}
+
 footer {
   border-top: 1px solid #f9f7fe;
   padding: 30px 0 0 0;
