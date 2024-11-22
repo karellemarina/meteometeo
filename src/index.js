@@ -15,7 +15,7 @@ function refreshWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon  img-fluid" />`;
 
   getForecast(response.data.city);
 }
@@ -75,14 +75,14 @@ function displayForecast(response) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
-        `  <div class="weather-forecast">
+        `  <div class="weather-forecast  img-fluid">
             <div class="col">
               <div class="forecastdate">
               ${formatDay(day.time)}
               </div>
               <div>
                <img
-                src=${day.condition.icon_url} class="imageforecast"/>
+                src=${day.condition.icon_url} class="imageforecast  img-fluid"/>
                </div>
               <div class="minmax"><strong>
                <span class="maxtemp">${Math.round(
